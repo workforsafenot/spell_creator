@@ -1,0 +1,918 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://spell_icons/default.png" type="Texture" id=1]
+[ext_resource path="res://scripts/spell_handler.gd" type="Script" id=2]
+[ext_resource path="res://icons/border.png" type="Texture" id=3]
+[ext_resource path="res://scripts/spell_desc_inp.gd" type="Script" id=4]
+[ext_resource path="res://imports/grimoire.png" type="Texture" id=5]
+[ext_resource path="res://styles/window_theme.tres" type="Theme" id=6]
+[ext_resource path="res://imports/handwritting.TTF" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 7 )
+
+[node name="Node2D" type="Control"]
+margin_right = 1497.0
+margin_bottom = 716.0
+mouse_default_cursor_shape = 6
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="TextureRect" parent="."]
+margin_left = -4.0
+margin_top = -424.0
+margin_right = 1611.0
+margin_bottom = 1284.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="IconSelector" type="FileDialog" parent="."]
+margin_left = 322.406
+margin_top = 169.442
+margin_right = 722.406
+margin_bottom = 469.442
+window_title = "Select A Spell Icon"
+resizable = true
+mode_overrides_title = false
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png ; PNG Images" )
+current_dir = "/"
+current_path = "/"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="main_window" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 156.0
+margin_top = 134.0
+margin_right = -111.0
+margin_bottom = -48.0
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_list" type="Control" parent="main_window"]
+anchor_bottom = 1.0
+margin_top = 9.0
+margin_bottom = 9.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_list_label" type="Label" parent="main_window/spell_list"]
+margin_left = 242.0
+margin_top = -55.0
+margin_right = 277.0
+margin_bottom = -38.0
+custom_fonts/font = SubResource( 1 )
+text = "Spells"
+
+[node name="current_spells" type="Tree" parent="main_window/spell_list"]
+anchor_bottom = 1.0
+margin_left = 104.1
+margin_top = 6.49661
+margin_right = 469.1
+margin_bottom = 30.4966
+columns = 2
+select_mode = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="new_spell" type="Control" parent="main_window"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -529.0
+margin_top = -34.0
+margin_right = 36.0
+margin_bottom = 57.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_id_label" type="Label" parent="main_window/new_spell"]
+margin_left = 146.909
+margin_top = -18.5102
+margin_right = 236.909
+margin_bottom = -4.51015
+text = "Spell ID: 9999"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spell_name" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_name_label" type="Label" parent="main_window/new_spell/spell_name"]
+margin_left = 91.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 38.0
+text = "Spell Name:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_name_inp" type="LineEdit" parent="main_window/new_spell/spell_name"]
+margin_left = 189.0
+margin_top = 20.0
+margin_right = 387.0
+margin_bottom = 45.0
+focus_next = NodePath("../../spell_description/spell_desc_inp")
+clear_button_enabled = true
+placeholder_text = "SpellName"
+placeholder_alpha = 0.24
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spell_description" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_desc_label" type="Label" parent="main_window/new_spell/spell_description"]
+margin_left = 89.0
+margin_top = 58.0
+margin_right = 168.0
+margin_bottom = 72.0
+text = "Description:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_desc_inp" type="TextEdit" parent="main_window/new_spell/spell_description"]
+margin_left = 189.0
+margin_top = 58.0
+margin_right = 386.0
+margin_bottom = 121.0
+focus_next = NodePath("../../spell_damage/spell_damage_inp")
+focus_previous = NodePath("../../spell_damage/spell_damage_inp")
+context_menu_enabled = false
+smooth_scrolling = true
+wrap_enabled = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_damage" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_damage_label" type="Label" parent="main_window/new_spell/spell_damage"]
+margin_left = 76.9932
+margin_top = 130.0
+margin_right = 167.993
+margin_bottom = 144.0
+text = "Damage:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_damage_inp" type="SpinBox" parent="main_window/new_spell/spell_damage"]
+margin_left = 189.0
+margin_top = 130.0
+margin_right = 265.0
+margin_bottom = 155.0
+focus_mode = 2
+max_value = 999.0
+value = 5.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spell_range" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_range_label" type="Label" parent="main_window/new_spell/spell_range"]
+margin_left = 270.0
+margin_top = 130.0
+margin_right = 314.0
+margin_bottom = 147.0
+text = "Range:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_range_inp" type="SpinBox" parent="main_window/new_spell/spell_range"]
+margin_left = 326.022
+margin_top = 126.567
+margin_right = 402.022
+margin_bottom = 151.567
+max_value = 50.0
+step = 0.1
+value = 10.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_afflic_chance" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_afflic_chance_label" type="Label" parent="main_window/new_spell/spell_afflic_chance"]
+margin_left = 59.5783
+margin_top = 170.232
+margin_right = 166.578
+margin_bottom = 187.232
+text = "Afflic. chance %:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_afflic_chance_inp" type="SpinBox" parent="main_window/new_spell/spell_afflic_chance"]
+margin_left = 188.5
+margin_top = 166.194
+margin_right = 264.5
+margin_bottom = 191.194
+step = 0.1
+value = 15.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spell_mana_cost" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_mana_cost_label" type="Label" parent="main_window/new_spell/spell_mana_cost"]
+margin_left = 267.0
+margin_top = 170.0
+margin_right = 314.0
+margin_bottom = 187.0
+text = "Mana:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_mana_cost_inp" type="SpinBox" parent="main_window/new_spell/spell_mana_cost"]
+margin_left = 326.022
+margin_top = 166.194
+margin_right = 402.022
+margin_bottom = 191.194
+max_value = 9999.0
+value = 5.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spell_quantity" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_quantity_label" type="Label" parent="main_window/new_spell/spell_quantity"]
+margin_left = 85.0
+margin_top = 198.0
+margin_right = 167.0
+margin_bottom = 215.0
+text = "Quantity:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_quantity_inp" type="SpinBox" parent="main_window/new_spell/spell_quantity"]
+margin_left = 188.5
+margin_top = 194.194
+margin_right = 264.5
+margin_bottom = 219.194
+max_value = 20.0
+value = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_boost" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_boost_label" type="Label" parent="main_window/new_spell/spell_boost"]
+margin_left = 255.741
+margin_top = 201.924
+margin_right = 312.741
+margin_bottom = 218.924
+text = "Boost:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_boost_inp" type="SpinBox" parent="main_window/new_spell/spell_boost"]
+margin_left = 326.022
+margin_top = 199.194
+margin_right = 402.022
+margin_bottom = 224.194
+max_value = 6.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_link_buff" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_link_buff_inp" type="CheckButton" parent="main_window/new_spell/spell_link_buff"]
+margin_left = 99.0
+margin_top = 230.0
+margin_right = 265.0
+margin_bottom = 255.0
+text = "Link Buff:"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_tick" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_tick_label" type="Label" parent="main_window/new_spell/spell_tick"]
+margin_left = 266.0
+margin_top = 234.0
+margin_right = 313.0
+margin_bottom = 251.0
+text = "Ticks:"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_tick_inp" type="SpinBox" parent="main_window/new_spell/spell_tick"]
+margin_left = 324.223
+margin_top = 229.0
+margin_right = 400.223
+margin_bottom = 254.0
+max_value = 3600.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_icon" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect" type="TextureRect" parent="main_window/new_spell/spell_icon"]
+margin_left = 437.0
+margin_top = 57.442
+margin_right = 511.0
+margin_bottom = 131.442
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spell_icon_image" type="TextureButton" parent="main_window/new_spell/spell_icon/ReferenceRect"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 69.0
+margin_bottom = 69.0
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_icon_label" type="Label" parent="main_window/new_spell/spell_icon"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 157.52
+margin_top = 37.6787
+margin_right = 220.52
+margin_bottom = 51.6787
+text = "Spell Icon"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_type" type="Control" parent="main_window/new_spell"]
+anchor_right = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="spell_type_label" type="Label" parent="main_window/new_spell/spell_type"]
+margin_left = 188.5
+margin_top = 271.613
+margin_right = 266.5
+margin_bottom = 288.613
+text = "Spell Type:"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elemental" type="Label" parent="main_window/new_spell/spell_type"]
+margin_left = 18.3928
+margin_top = 301.442
+margin_right = 107.393
+margin_bottom = 318.442
+text = "Elemental"
+uppercase = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fundamental" type="Label" parent="main_window/new_spell/spell_type"]
+margin_left = 144.685
+margin_top = 301.442
+margin_right = 254.685
+margin_bottom = 318.442
+text = "Fundamental"
+uppercase = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="afflictions" type="Label" parent="main_window/new_spell/spell_type"]
+margin_left = 282.691
+margin_top = 301.442
+margin_right = 380.691
+margin_bottom = 318.442
+text = "Afflictions"
+uppercase = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="universal_compliance" type="Label" parent="main_window/new_spell/spell_type"]
+margin_left = 402.147
+margin_top = 301.442
+margin_right = 588.147
+margin_bottom = 318.442
+text = "Universal Compliance"
+uppercase = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_window/new_spell/spell_type"]
+margin_left = 21.774
+margin_top = 322.442
+margin_right = 554.774
+margin_bottom = 639.442
+custom_constants/separation = 61
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Elemental" type="VBoxContainer" parent="main_window/new_spell/spell_type/HBoxContainer"]
+margin_right = 87.0
+margin_bottom = 317.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_fire" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_right = 87.0
+margin_bottom = 17.0
+text = "Fire"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_water" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 17.0
+margin_right = 87.0
+margin_bottom = 34.0
+text = "Water"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_earth" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 34.0
+margin_right = 87.0
+margin_bottom = 51.0
+text = "Earth"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_wind" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 51.0
+margin_right = 87.0
+margin_bottom = 68.0
+text = "Wind"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_electricity" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 68.0
+margin_right = 87.0
+margin_bottom = 85.0
+text = "Electricity"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_metal" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 85.0
+margin_right = 87.0
+margin_bottom = 102.0
+text = "Metal"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_ice" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 102.0
+margin_right = 87.0
+margin_bottom = 119.0
+text = "Ice"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_light" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 119.0
+margin_right = 87.0
+margin_bottom = 136.0
+text = "Light"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_shadow" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 136.0
+margin_right = 87.0
+margin_bottom = 153.0
+text = "Shadow"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_ash" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 153.0
+margin_right = 87.0
+margin_bottom = 170.0
+text = "Ash"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_crystal" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 170.0
+margin_right = 87.0
+margin_bottom = 187.0
+text = "Crystal"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="elm_poison" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Elemental"]
+margin_top = 187.0
+margin_right = 87.0
+margin_bottom = 204.0
+text = "Poison"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Fundamental" type="VBoxContainer" parent="main_window/new_spell/spell_type/HBoxContainer"]
+margin_left = 148.0
+margin_right = 216.0
+margin_bottom = 317.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fund_void" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Fundamental"]
+margin_right = 68.0
+margin_bottom = 17.0
+text = "Void"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fund_time" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Fundamental"]
+margin_top = 17.0
+margin_right = 68.0
+margin_bottom = 34.0
+text = "Time"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fund_reality" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Fundamental"]
+margin_top = 34.0
+margin_right = 68.0
+margin_bottom = 51.0
+text = "Reality"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fund_gravity" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Fundamental"]
+margin_top = 51.0
+margin_right = 68.0
+margin_bottom = 68.0
+text = "Gravity"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Afflictions" type="VBoxContainer" parent="main_window/new_spell/spell_type/HBoxContainer"]
+margin_left = 277.0
+margin_right = 352.0
+margin_bottom = 317.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_burn" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_right = 75.0
+margin_bottom = 17.0
+text = "Burn"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_freeze" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_top = 17.0
+margin_right = 75.0
+margin_bottom = 34.0
+text = "Freeze"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_paralyze" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_top = 34.0
+margin_right = 75.0
+margin_bottom = 51.0
+text = "Paralyze"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_stun" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_top = 51.0
+margin_right = 75.0
+margin_bottom = 68.0
+text = "Stun"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_poison" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_top = 68.0
+margin_right = 75.0
+margin_bottom = 85.0
+text = "Poison"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_weaken" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_top = 85.0
+margin_right = 75.0
+margin_bottom = 102.0
+text = "Weaken"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_melt" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_top = 102.0
+margin_right = 75.0
+margin_bottom = 119.0
+text = "Melt"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="aff_slow" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Afflictions"]
+margin_top = 119.0
+margin_right = 75.0
+margin_bottom = 136.0
+text = "Slow"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Universal_compliance" type="VBoxContainer" parent="main_window/new_spell/spell_type/HBoxContainer"]
+margin_left = 413.0
+margin_right = 480.0
+margin_bottom = 317.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="uni_healing" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Universal_compliance"]
+margin_right = 67.0
+margin_bottom = 17.0
+text = "Healing"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="uni_buff" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Universal_compliance"]
+margin_top = 17.0
+margin_right = 67.0
+margin_bottom = 34.0
+text = "Buff"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="uni_debuff" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Universal_compliance"]
+margin_top = 34.0
+margin_right = 67.0
+margin_bottom = 51.0
+text = "Debuff"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="uni_craft" type="CheckBox" parent="main_window/new_spell/spell_type/HBoxContainer/Universal_compliance"]
+margin_top = 51.0
+margin_right = 67.0
+margin_bottom = 68.0
+text = "Craft"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="add_spell" type="Button" parent="main_window/new_spell"]
+margin_left = 482.972
+margin_top = 557.666
+margin_right = 632.972
+margin_bottom = 582.666
+text = "Add Spell"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="save_spell" type="Button" parent="main_window/new_spell"]
+margin_left = 482.972
+margin_top = 590.224
+margin_right = 632.972
+margin_bottom = 615.224
+text = "Save Spell"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="remove_spell" type="Button" parent="main_window/new_spell"]
+margin_left = 482.972
+margin_top = 621.72
+margin_right = 632.972
+margin_bottom = 646.72
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+text = "Remove Spell"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="quit" type="Button" parent="."]
+margin_left = 1450.84
+margin_top = 105.866
+margin_right = 1470.84
+margin_bottom = 125.866
+text = "X"
+flat = true
+
+[connection signal="confirmed" from="IconSelector" to="." method="_on_IconSelector_confirmed"]
+[connection signal="file_selected" from="IconSelector" to="." method="_on_IconSelector_file_selected"]
+[connection signal="pressed" from="main_window/new_spell/spell_icon/ReferenceRect/spell_icon_image" to="." method="_on_spell_icon_image_pressed"]
+[connection signal="pressed" from="main_window/new_spell/add_spell" to="." method="_on_add_spell_pressed"]
+[connection signal="pressed" from="main_window/new_spell/save_spell" to="." method="_on_save_spell_pressed"]
+[connection signal="pressed" from="main_window/new_spell/remove_spell" to="." method="_on_remove_spell_pressed"]
+[connection signal="button_down" from="quit" to="." method="_on_quit_button_down"]
